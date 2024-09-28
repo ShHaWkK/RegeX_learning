@@ -93,8 +93,18 @@ Capturer une URL
 ```regex
 https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
 ```
-🧰 Ressources et Outils
+## 🧰 Ressources et Outils
 
-Regex101 : Outil interactif pour tester et comprendre les regex.
-RegExr : Un autre éditeur en ligne pour expérimenter avec les regex.
-RegexOne : Un excellent tutoriel interactif pour apprendre les regex étape par étape.
+Voici quelques outils et ressources utiles pour vous aider à apprendre et tester les expressions régulières (regex) :
+
+- [**Regex101**](https://regex101.com/) : Outil interactif pour tester des expressions régulières. Il fournit également des explications détaillées sur la syntaxe de chaque regex que vous entrez.
+  
+- [**RegExr**](https://regexr.com/) : Un autre éditeur en ligne populaire pour tester les expressions régulières. Il dispose d'une documentation intégrée et permet aux utilisateurs de créer des regex et de les partager.
+  
+- [**RegexOne**](https://regexone.com/) : Un excellent tutoriel interactif qui vous guide étape par étape à travers les concepts de base et avancés des expressions régulières.
+  
+- [**Debuggex**](https://www.debuggex.com/) : Un visualiseur d'expressions régulières qui aide à voir graphiquement ce que fait chaque partie de votre regex.
+  
+- [**Regular Expressions Info**](https://www.regular-expressions.info/) : Un site complet avec des explications, des exemples, et une documentation détaillée sur les expressions régulières.
+  
+Ces outils vous aideront à mieux comprendre les regex et à tester vos propres expressions régulières dans un environnement interactif.

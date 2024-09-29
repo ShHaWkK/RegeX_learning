@@ -1,110 +1,82 @@
-# 📚 Guide des Expressions Régulières (Regex)
+# 📚 Guide des Expressions Régulières (Regex) pour Débutants
 
-Les **expressions régulières** (regex) sont des outils puissants pour rechercher, manipuler et valider des chaînes de caractères. Ce guide vous apprendra les bases et vous guidera à travers des exemples pratiques.
+Les **expressions régulières** (regex) sont des outils puissants pour rechercher et manipuler du texte. Ce guide vous apprendra les bases essentielles pour comprendre et utiliser les regex efficacement.
 
 ## 🌟 Sommaire
 
 - [Introduction aux Regex](#introduction-aux-regex)
-- [Syntaxe de Base](#syntaxe-de-base)
-- [Groupes de Captures et Références](#groupes-de-captures-et-références)
-- [Assertions et Lookahead](#assertions-et-lookahead)
-- [Exemples Courants](#exemples-courants)
-- [Ressources et Outils](#ressources-et-outils)
-
----
+- [Caractères Littéraux](#caractères-littéraux)
+- [Métacaractères](#métacaractères)
+- [Classes de Caractères](#classes-de-caractères)
+- [Quantificateurs](#quantificateurs)
+- [Ancres](#ancres)
+- [Groupes et Captures](#groupes-et-captures)
+- [Exemples Pratiques](#exemples-pratiques)
+- [Ressources pour s'Entraîner](#ressources-pour-sentraîner)
 
 ## 🔍 Introduction aux Regex
 
-Les **expressions régulières** (regex) sont une séquence de caractères qui forment un modèle de recherche. Elles sont utilisées pour effectuer des tâches comme :
+Les expressions régulières sont des motifs de recherche utilisés pour trouver des séquences spécifiques dans du texte. Elles sont composées de caractères littéraux et de caractères spéciaux appelés métacaractères.
 
-- Valider des formats de texte (emails, numéros de téléphone, etc.)
-- Trouver et remplacer du texte dans une chaîne
-- Extraire des données spécifiques d'un texte
+## 🔤 Caractères Littéraux
 
----
+Les caractères littéraux correspondent exactement à eux-mêmes. Par exemple, la regex `chat` trouvera le mot "chat" dans un texte.
 
-## 🔤 Syntaxe de Base
+## 🔣 Métacaractères
 
-Voici quelques symboles de base utilisés dans les expressions régulières :
+Les métacaractères ont des significations spéciales dans les regex:
 
-| Symbole   | Signification                                   | Exemple        |
-|-----------|-------------------------------------------------|----------------|
-| `.`       | Correspond à **n'importe quel caractère**       | `a.b` → "a9b"  |
-| `^`       | Correspond au **début d'une ligne**             | `^Bonjour`     |
-| `$`       | Correspond à **la fin d'une ligne**             | `monde$`       |
-| `[]`      | **Classe de caractères**, correspond à l'un d'eux | `[abc]` → "a" ou "b" ou "c" |
-| `|`       | **OU logique**                                  | `a|b` → "a" ou "b" |
-| `*`       | 0 ou plusieurs occurrences                      | `ab*c` → "ac", "abc", "abbc" |
-| `+`       | 1 ou plusieurs occurrences                      | `ab+c` → "abc", "abbc" |
-| `{n}`     | Exactement n occurrences                        | `a{3}` → "aaa" |
+| Métacaractère | Signification |
+|---------------|---------------|
+| `.`           | N'importe quel caractère sauf nouvelle ligne |
+| `\d`          | Chiffre (0-9) |
+| `\w`          | Caractère de mot (a-z, A-Z, 0-9, _) |
+| `\s`          | Espace blanc (espace, tabulation, nouvelle ligne) |
 
-### Exemple :
+## 📊 Classes de Caractères
 
-Pour capturer un email simple :
-```regex
-^[\w\.-]+@[\w\.-]+\.[a-zA-Z]{2,}$
-```
+Les classes de caractères permettent de spécifier un ensemble de caractères à rechercher:
 
-## 🎯 Groupes de Captures et Références
+- `[abc]` : Correspond à 'a', 'b', ou 'c'
+- `[a-z]` : Correspond à n'importe quelle lettre minuscule
+- `[^abc]` : Correspond à tout caractère sauf 'a', 'b', ou 'c'
 
-Les groupes de captures permettent de capturer des sous-chaînes de caractères que vous pouvez réutiliser. Ils sont définis avec des parenthèses ().
+## 🔢 Quantificateurs
 
-Syntaxe :
-(abc) : Capture "abc"
-\1 : Référence au premier groupe capturé
-Exemple :
-Pour capturer un domaine et le réutiliser :
-```regex
-(\w+)\.com
-```
-Résultat : Capture le domaine et peut être référencé plus tard.
+Les quantificateurs spécifient combien de fois un élément doit apparaître:
 
-## 🛠 Assertions et Lookahead
+- `*` : 0 ou plus
+- `+` : 1 ou plus
+- `?` : 0 ou 1
+- `{n}` : Exactement n fois
+- `{n,}` : Au moins n fois
+- `{n,m}` : Entre n et m fois
 
-Les assertions sont des conditions qui doivent être vraies pour une correspondance, mais qui ne capturent pas de texte. Il y a deux types principaux d'assertions :
+## ⚓ Ancres
 
-Lookahead positif : (?=...)
-Vérifie qu'une certaine séquence suit sans la capturer.
-Exemple : Trouver un chiffre suivi de "€" :
+Les ancres définissent des positions dans le texte:
 
-```regex
-\d(?=€)
-```
-Lookahead négatif : (?!...)
-Vérifie qu'une séquence n'est pas suivie d'une certaine chaîne.
-Exemple : Un chiffre non suivi de "€" :
+- `^` : Début de la ligne
+- `$` : Fin de la ligne
+- `\b` : Limite de mot
 
-```regex
+## 🎯 Groupes et Captures
 
-\d(?!€)
-```
-## 📌 Exemples Courants
+Les parenthèses `()` créent des groupes de capture, permettant d'isoler des parties du motif:
 
-Valider une adresse email
-```regex
+- `(abc)` : Groupe capturant 'abc'
+- `(?:abc)` : Groupe non-capturant
 
-^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
-```
-Trouver un numéro de téléphone
-```regex
-^(\+?\d{1,3}[-.\s]?)?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$
-```
-Capturer une URL
-```regex
-https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
-```
-## 🧰 Ressources et Outils
+## 📌 Exemples Pratiques
 
-Voici quelques outils et ressources utiles pour vous aider à apprendre et tester les expressions régulières (regex) :
+1. Trouver un nombre à 3 chiffres : `\b\d{3}\b`
+2. Valider un email simple : `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
+3. Trouver des mots de 4 à 6 lettres : `\b[a-zA-Z]{4,6}\b`
 
-- [**Regex101**](https://regex101.com/) : Outil interactif pour tester des expressions régulières. Il fournit également des explications détaillées sur la syntaxe de chaque regex que vous entrez.
-  
-- [**RegExr**](https://regexr.com/) : Un autre éditeur en ligne populaire pour tester les expressions régulières. Il dispose d'une documentation intégrée et permet aux utilisateurs de créer des regex et de les partager.
-  
-- [**RegexOne**](https://regexone.com/) : Un excellent tutoriel interactif qui vous guide étape par étape à travers les concepts de base et avancés des expressions régulières.
-  
-- [**Debuggex**](https://www.debuggex.com/) : Un visualiseur d'expressions régulières qui aide à voir graphiquement ce que fait chaque partie de votre regex.
-  
-- [**Regular Expressions Info**](https://www.regular-expressions.info/) : Un site complet avec des explications, des exemples, et une documentation détaillée sur les expressions régulières.
-  
-Ces outils vous aideront à mieux comprendre les regex et à tester vos propres expressions régulières dans un environnement interactif.
+## 🧰 Ressources pour s'Entraîner
+
+- [Regex101](https://regex101.com/) : Testez vos regex en temps réel
+- [RegexOne](https://regexone.com/) : Tutoriel interactif pour apprendre les bases
+- [RegExr](https://regexr.com/) : Outil d'apprentissage et de test avec une documentation intégrée
+
+En maîtrisant ces concepts de base, vous serez en mesure de construire des expressions régulières efficaces pour diverses tâches de manipulation de texte.
